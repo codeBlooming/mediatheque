@@ -29,7 +29,7 @@ class UserFixtures extends Fixture
         //EMPLOYEE
         $user = new User();
         $user->setEmail('alex@employee.fr');
-        $user->setPassword('$2y$10$4nJInvwr/f4IPsDGPfZ0..Je2biNJ8F2985TaocCjnYj1wJZxGN.6');//admin
+        $user->setPassword('$2y$10$4nJInvwr/f4IPsDGPfZ0..Je2biNJ8F2985TaocCjnYj1wJZxGN.6');//test
         $user->setFirstname('Alex');
         $user->setLastname('C');
         $user->setBirthdate(new \DateTime('2010-08-28'));
@@ -43,7 +43,7 @@ class UserFixtures extends Fixture
         //USER (validated)
         $user = new User();
         $user->setEmail('manon@user.fr');
-        $user->setPassword('$2y$10$4nJInvwr/f4IPsDGPfZ0..Je2biNJ8F2985TaocCjnYj1wJZxGN.6');//admin
+        $user->setPassword('$2y$10$4nJInvwr/f4IPsDGPfZ0..Je2biNJ8F2985TaocCjnYj1wJZxGN.6');//test
         $user->setFirstname('Manon');
         $user->setLastname('C');
         $user->setBirthdate(new \DateTime('2007-09-04'));
@@ -57,7 +57,7 @@ class UserFixtures extends Fixture
         //USER (No validated)
         $user = new User();
         $user->setEmail('jean@user.fr');
-        $user->setPassword('$2y$10$4nJInvwr/f4IPsDGPfZ0..Je2biNJ8F2985TaocCjnYj1wJZxGN.6');//admin
+        $user->setPassword('$2y$10$4nJInvwr/f4IPsDGPfZ0..Je2biNJ8F2985TaocCjnYj1wJZxGN.6');//test
         $user->setFirstname('Jean');
         $user->setLastname('Dujardin');
         $user->setBirthdate(new \DateTime('1981-02-28'));

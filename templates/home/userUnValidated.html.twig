@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <title>Attente de validation</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col d-flex justify-content-center align-items-center vh-100">
+
+            <div class=" shadow-lg d-flex justify-content-center align-items-center bg-light overflow-hidden">
+                <div>
+                    <img src="{{ asset('images/library.gif') }}" alt="animated_gif" >
+                </div>
+                <div class="p-2 text-center w-50 ">
+                    <h2>Votre compte doit être validé <br/> par un de nos employés.</h2>
+
+                    <p class="mt-5 mb-5">Merci de patienter et de revenir d'ici quelques minutes</p>
+                    <a href="{{ path('library') }}" class="btn btn-info">Actualiser la page</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

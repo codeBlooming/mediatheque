@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Bienvenue sur le site de la médiathèque de La Chapelle-Curreaux</h1>
+            <p class="lead">Pour vous faciliter la vie, nos 42 500 références sont disponibles au click and collect.</p>
+            <hr class="my-4">
+            <p>VOUS DEVEZ VOUS ENREGISTRER ET VOUS CONNECTER POUR ACCEDER A LA MEDIATHEQUE</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="{{ path('app_registration') }}" role="button">S'enregistrer</a>
+                <a class="btn btn-success btn-lg" href="{{ path('app_login') }}" role="button">Se connecter</a>
+            </p>
+
+        </div>
+    </div>
+{% endblock %}

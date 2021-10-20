@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row " >
+        <div class="col d-flex align-middle justify-content-center mt-5">
+            <div class="card mb-3 p-5 shadow-lg" style="max-width: 840px;overflow: hidden">
+                <h4 class="ribbon shadow-lg" style="display: {{ book.isReserved ? 'block' : 'none' }}">Réservé</h4>
+                <div class="row g-0">
+                    <div class="col d-flex align-items-center">
+                        <img src="{{ book.cover }}" class="card-img-top rounded  {{ book.isReserved ? 'reservedBook-img' : '' }}" alt="cover image">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <p class="card-text">{{ book.description }}</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <div style="display: flex; align-items: center; justify-content: space-between">
+                                <p class="bookGenre">{{ book.genre }}</p>
+                                {% if book.isReserved %}
+                                    {% if book.reservation and app.user.firstname is same as book.reservation.user.firstname  %}
+                                        {% if book.isBorrowed %}
+                                            <div class="bg-info p-2 rounded">Merci de rapporter ce livre</div>
+                                        {% else %}
+                                            <a href="{{ path('reserveBook',{'id': book.id }) }}" class="btn btn-info js-reserved">
+                                                Annuler la réservation
+                                            </a>
+                                        {% endif %}
+                                    {% else %}
+                                        <div class="bg-info p-2 rounded">livre indisponible</div>
+                                    {% endif %}
+                                {% else %}
+                                    <a href="{{ path('reserveBook',{'id': book.id }) }}" class="btn btn-info js-reserved">
+                                        Réserver
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script>
+        function onClickBtnReserved (event) {
+            event.preventDefault();
+            const url = this.href;
+            const link = this;
+
+            axios.get(url).then(function(response) {
+                if(response.data.isReserved)
+                {
+                    link.textContent = 'Annuler la réservation';
+                    document.querySelector('.card-img-top').classList.add('reservedBook-img');
+                    document.querySelector('.ribbon').style.display = 'block';
+                }else
+                {
+                    link.textContent = 'Réserver';
+                    document.querySelector('.card-img-top').classList.remove('reservedBook-img');
+                    document.querySelector('.ribbon').style.display = 'none';
+                }
+            })
+        }
+        document.querySelector('a.js-reserved').addEventListener('click', onClickBtnReserved);
+    </script>
+{% endblock %}

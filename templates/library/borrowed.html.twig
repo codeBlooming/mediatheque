@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="row">
+        <h1>Liste de réservation(s) ({{ reservations | length }}) : </h1>
+    </div>
+    <hr>
+    <div class="row" >
+        <div class="col">
+            <table class="table table-striped table-hover text-center align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Nom du livre</th>
+                        <th scope="col">Date de réservation</th>
+                        <th scope="col">Rappel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for resa in reservations %}
+                    {% if not resa.book.isBorrowed %}
+                    <tr>
+                        <td><img src="{{ resa.book.cover }}" class="img-fluid rounded-start h-100" style="width:100px" alt="book cover"></td>
+                        <td>{{ resa.book.title }}</td>
+                        <td>{{ resa.reservedDate | date('d-m-Y') }}</td>
+                        <td>Il vous reste {{ resa.reservedDate | date('d-m-Y') }} pour venir récupérer le livre</td>
+                    </tr>
+                    {%  endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <h1>Liste d'emprunt(s)  : </h1>
+    </div>
+    <hr>
+    <div class="row" >
+        <div class="col">
+            <table class="table table-striped table-hover text-center align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Nom du livre</th>
+                        <th scope="col">Date d'emprunt</th>
+                        <th scope="col">Rappel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for resa in reservations %}
+                    {% if resa.book.isBorrowed %}
+                        <tr>
+                            <td><img src="{{ resa.book.cover }}" class="img-fluid rounded-start h-100" style="width:100px" alt="book cover"></td>
+                            <td>{{ resa.book.title }}</td>
+                            <td>{{ resa.borrowedDate | date('d-m-Y') }}</td>
+                            <td>Merci venir redéposer le livre lorsque vous avez terminé</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+    <!--div>
+        <div>
+            Vous avez actuellement {{ app.user.reservations | length }} réservations en cours
+        </div>
+
+    </div-->
+
+
+    <div class="row "  >
+        <h2>Liste des livres disponibles de la médiathèque</h2>
+    </div>
+
+     <hr>
+
+    <div class="row " >
+        <div class="col-md d-flex flex-row flex-wrap justify-content-center">
+        {% for book in books %}
+                <div class="card bg-dark m-2" style="overflow:hidden;width: 288px; min-width: 288px">
+                    <h4 class="ribbon shadow-lg" style="display: {{ book.isReserved ? 'block' : 'none' }}">Réservé</h4>
+                    <img src="{{ book.cover }}" class="card-img-top mx-auto shadow rounded mt-2  {{ book.isReserved ? 'reservedBook-img' : '' }}" alt="cover image" style="width:220px;height:300px">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <p class="card-text description">{{ book.description }}</p>
+                        <div style="display: flex; align-items: center; justify-content: space-between">
+                            <p class="bookGenre">{{ book.genre }}</p>
+                            <a href="{{ path('editBook',{id: book.id }) }}" class="btn btn-primary">Détails</a>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
