@@ -5,15 +5,84 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
+
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         {% block stylesheets %}
             {#{{ encore_entry_link_tags('app') }}#}
         {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
+
+
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light  fixed-top shadow pt-1 pb-1 menuItem">
+        <div class="container-fluid">
+
+            <img src="{{ asset('images/logo.png') }}" alt="" style="height: 50px">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav me-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('library') }}">Médiathèque
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ path('borrow') }}" style="position: relative">Emprunts</a>
+                    </li>
+                    {%  if is_granted('ROLE_EMPLOYEE') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('admin') }}" target="_blank">Administration</a>
+                    </li>
+                    {%  endif %}
+
+                    {% if not app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_login') }}">login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_registration') }}">Inscription</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div>
+                {% if app.user %}
+                    <div class="nav-item" style="color: rgba(34,34,34,.7);margin-right:10px">
+                        Bienvenue, {{ app.user.firstname }}. <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+        <div class="container w-auto"  style="padding-top: 80px;margin-bottom: 40px" >
+            {% block body %}{% endblock %}
+        </div>
+    </main>
+            </div>
+        </div>
+    </div>
     </body>
+    <footer class="container-fluid bg-light fixed-bottom text-center text-black">
+        Copyright © {{ "now"|date("Y") }} - Tous droits réservés
+    </footer>
+
+
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/functions.js') }}"></script>
+    <script src="{{ asset('js/axios.min.js') }}"></script>
+    {% block javascripts %}
+        {#{{ encore_entry_script_tags('app') }}#}
+    {% endblock %}
 </html>
