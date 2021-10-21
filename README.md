@@ -1,7 +1,12 @@
 # Projet Médiathèque
 
 ## Description
-Dépôt du projet Médiathèque. Les documents annexes sont disponibles dans le dossier ANNEXES de ce dépôt
+Dépôt du projet Médiathèque.
+
+Les documents annexes sont disponibles dans le dossier ANNEXES :
+- Charte graphique
+- Manuel d'utilisation
+- Documentation technique
 
 ## Récupération du projet
 
