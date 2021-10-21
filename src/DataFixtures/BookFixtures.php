@@ -13,14 +13,14 @@ class BookFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
 
-        for($i =1 ; $i<=10; $i ++)
+        for($i =1 ; $i<=40; $i ++)
         {
             $book = new Book();
             $book->setTitle($faker->sentence(2));
             $book->setDescription( $faker->text );
             $book->setCover($faker->imageUrl('220','300'));
             $book->setAuthor($faker->name);
-            $book->setGenre($faker->randomElement(['Histoire', 'Science fiction', 'Guides pratiques', 'Policier', 'Sciences','Droit et économie']));
+            $book->setGenre($faker->randomElement(['Histoire', 'Science fiction', 'Guides pratiques', 'Policier', 'Sciences','Droit et économie', 'manga']));
             $book->setReleaseDate($faker->dateTimeBetween('-6 months'));
             $manager->persist($book);
         }
