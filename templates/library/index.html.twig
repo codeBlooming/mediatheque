@@ -1,24 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
-
 {% block body %}
 
     <!--div>
-        <div>
-            Vous avez actuellement {{ app.user.reservations | length }} réservations en cours
-        </div>
-
+            Vous avez actuellement {#  {{ app.user.reservations | length }} #} réservations en cours
     </div-->
 
 
-    <div class="row "  >
-        <h2>Liste des livres disponibles de la médiathèque</h2>
+    <div class="row">
+        <h3>Parcourez notre bibliothèque</h3>
     </div>
 
      <hr>
 
-    <div class="row " >
+    <div class="row" >
         <div class="col-md d-flex flex-row flex-wrap justify-content-center">
         {% for book in books %}
                 <div class="card bg-dark m-2" style="overflow:hidden;width: 288px; min-width: 288px">

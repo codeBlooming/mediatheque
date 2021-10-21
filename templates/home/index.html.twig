@@ -3,17 +3,17 @@
 {% block title %}Bienvenue sur le site de la médiathèque{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="jumbotron">
+
+
+        <div class="jumbotron m-auto">
             <h1 class="display-4">Bienvenue sur le site de la médiathèque de La Chapelle-Curreaux</h1>
             <p class="lead">Pour vous faciliter la vie, nos 42 500 références sont disponibles au click and collect.</p>
             <hr class="my-4">
             <p>VOUS DEVEZ VOUS ENREGISTRER ET VOUS CONNECTER POUR ACCEDER A LA MEDIATHEQUE</p>
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="{{ path('app_registration') }}" role="button">S'enregistrer</a>
-                <a class="btn btn-success btn-lg" href="{{ path('app_login') }}" role="button">Se connecter</a>
+            <p class="lead text-center d-flex align-items-center justify-content-center">
+                <a class="btn btn-primary btn-lg mx-1" href="{{ path('app_registration') }}" role="button">S'enregistrer</a>
+                <a class="btn btn-success btn-lg mx-1" href="{{ path('app_login') }}" role="button">Se connecter</a>
             </p>
 
         </div>
-    </div>
 {% endblock %}

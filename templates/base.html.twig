@@ -1,81 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Médiathèque - la Chapelle-Curreaux{% endblock %}</title>
+        <meta name="description"
+              content="Site de la médiathèque de Chapelle-Curreaux - accessible à tous les habitants - click and collect - 42500 livres à emprunter"
+        />
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         {% block stylesheets %}
             {#{{ encore_entry_link_tags('app') }}#}
         {% endblock %}
-
-
-
     </head>
     <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light  fixed-top shadow pt-1 pb-1 menuItem">
         <div class="container-fluid">
+            <header class="row">
+                <div class="col p-0">
+                    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow  menuItem">
+                            <img src="{{ asset('images/logo.png') }}" alt="" class="navbar-brand logo" style="height: 50px">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse justify-content-end" id="navbarColor03">
+                                <ul class="navbar-nav">
+                                    {% if app.user %}
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="{{ path('library') }}">Médiathèque
+                                                <span class="visually-hidden">(current)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="{{ path('borrow') }}" style="position: relative">Emprunts</a>
+                                        </li>
+                                    {% endif %}
+                                    {%  if is_granted('ROLE_EMPLOYEE') %}
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ path('admin') }}" target="_blank">Administration</a>
+                                        </li>
+                                    {%  endif %}
 
-            <img src="{{ asset('images/logo.png') }}" alt="" style="height: 50px">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav me-auto">
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ path('library') }}">Médiathèque
-                            <span class="visually-hidden">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ path('borrow') }}" style="position: relative">Emprunts</a>
-                    </li>
-                    {%  if is_granted('ROLE_EMPLOYEE') %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('admin') }}" target="_blank">Administration</a>
-                    </li>
-                    {%  endif %}
-
-                    {% if not app.user %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_login') }}">login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_registration') }}">Inscription</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
-            <div>
-                {% if app.user %}
-                    <div class="nav-item" style="color: rgba(34,34,34,.7);margin-right:10px">
-                        Bienvenue, {{ app.user.firstname }}. <a href="{{ path('app_logout') }}">Logout</a>
-                    </div>
-                {% endif %}
-            </div>
+                                    {% if not app.user %}
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ path('app_registration') }}">S'enregistrer</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            {% if app.user %}
+                                <div class="nav-item" style="color: rgba(34,34,34,.7);margin-right:10px;margin-left: 50px;">
+                                    Bienvenue, {{ app.user.firstname }}. <a href="{{ path('app_logout') }}">Logout</a>
+                                </div>
+                            {% endif %}
+                    </nav>
+                </div>
+            </header>
+            <main class="row align-items-center py-3 py-md-0">
+                <div class="col w-auto vh-100 d-flex flex-column"  style="padding-top: 80px;padding-bottom: 40px" >
+                    {% block body %}{% endblock %}
+                </div>
+            </main>
+            <footer class="row bg-light fixed-bottom text-center text-black">
+                <div class="col">
+                    Copyright © {{ "now"|date("Y") }} - Tous droits réservés
+                </div>
+            </footer>
         </div>
-    </nav>
-    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
-        <div class="container w-auto"  style="padding-top: 80px;margin-bottom: 40px" >
-            {% block body %}{% endblock %}
-        </div>
-    </main>
-            </div>
-        </div>
-    </div>
     </body>
-    <footer class="container-fluid bg-light fixed-bottom text-center text-black">
-        Copyright © {{ "now"|date("Y") }} - Tous droits réservés
-    </footer>
+
 
 
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
